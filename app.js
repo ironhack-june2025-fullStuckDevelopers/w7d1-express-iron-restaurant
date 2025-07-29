@@ -55,9 +55,25 @@ app.get("/contact", (req, res, next) => {
 
 
 // GET /pizzas
+// GET /pizzas?maxPrice=xx
 app.get("/pizzas", (req, res, next) => {
-    res.json(pizzasArr)
+
+    const { maxPrice } = req.query
+
+    // if maxPrice is undefined, return an array with all the pizzas
+    if(maxPrice === undefined) {
+        res.json(pizzasArr)
+        return
+    }
+
+    // if we have maxPrice, then we return only the pizzas with that maxPrice
+    const filteredPizzas = pizzasArr.filter((pizzaObj) => {
+        return pizzaObj.price <= parseFloat(maxPrice);
+    })
+
+    res.json(filteredPizzas)
 })
+
 
 
 // GET /pizzas/xxx
