@@ -60,6 +60,19 @@ app.get("/pizzas", (req, res, next) => {
 })
 
 
+// GET /pizzas/xxx
+app.get("/pizzas/:pizzaId", (req, res, next) => {
+
+    let { pizzaId } = req.params // note: we get pizzaId as a string
+
+    pizzaId = parseInt(pizzaId) // convert to an integer
+
+    const result = pizzasArr.find((pizzaObj, i, arr) => {
+        return pizzaObj.id === pizzaId
+    })
+
+    res.json(result)
+})
 
 
 
