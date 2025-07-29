@@ -24,12 +24,12 @@ app.use(express.json());
 // Examples of custom middleware
 //
 
-function sayHello1 (request, response, next) {
+function sayHello1 (req, res, next) {
     console.log("hello world...")
     next()
 }
 
-function sayHello2 (request, response, next) {
+function sayHello2 (req, res, next) {
     console.log("hello world 2...")
     next()
 }
@@ -39,30 +39,24 @@ app.use("/", sayHello2)
 
 
 //
-// How to create routes in Express:
-// 
-// - app.get(path, code)
-// - app.get(path, function(a, b, c){})
+// Routes...
 // 
 
 // GET /
-app.get("/", function(request, response, next){
-    console.log("we received a request for the Home page...")
-    // response.send()
-    response.sendFile(__dirname + "/views/home.html")
+app.get("/", (req, res, next) => {
+    res.sendFile(__dirname + "/views/home.html")
 })
 
 
 // GET /contact
-app.get("/contact", function(request, response, next){
-    // response.send()
-    response.sendFile(__dirname + "/views/contact.html")
+app.get("/contact", (req, res, next) => {
+    res.sendFile(__dirname + "/views/contact.html")
 })
 
 
 // GET /pizzas
-app.get("/pizzas", function(request, response, next) {
-    response.json(pizzasArr)
+app.get("/pizzas", (req, res, next) => {
+    res.json(pizzasArr)
 })
 
 
@@ -70,7 +64,7 @@ app.get("/pizzas", function(request, response, next) {
 
 
 // Start listening for http requests...
-app.listen(PORT, function() {
+app.listen(PORT, () => {
     console.log(`Our app is running on port ${PORT}`)
 })
 
