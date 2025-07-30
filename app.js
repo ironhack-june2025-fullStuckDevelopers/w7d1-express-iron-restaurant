@@ -5,8 +5,6 @@ const mongoose = require("mongoose")
 const Pizza = require("./models/Pizza.model.js")
 const Cook = require("./models/Cook.model.js")
 
-const pizzasArr = require("./data/pizzas.js")
-
 const app = express()
 
 const PORT = 3001
