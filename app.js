@@ -33,24 +33,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/express-restaurant")
 
 
 //
-// Examples of custom middleware
-//
-
-function sayHello1 (req, res, next) {
-    console.log("hello world...")
-    next()
-}
-
-function sayHello2 (req, res, next) {
-    console.log("hello world 2...")
-    next()
-}
-
-app.use("/", sayHello1)
-app.use("/", sayHello2)
-
-
-//
 // Routes...
 // 
 
